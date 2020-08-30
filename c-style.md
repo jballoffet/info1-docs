@@ -2,6 +2,21 @@
 
 No hay una forma correcta de estilizar el código. Pero definitivamente hay muchas formas incorrectas (o al menos, malas). Aun así, Info1 le pide que se adhiera a las convenciones siguientes para que podamos analizar de manera confiable el estilo de su código. De manera similar, las empresas suelen adoptar sus propias convenciones de estilo para toda la empresa.
 
+## Tabla de Contenido
+
+- [Largo de Líneas](#largo-lineas)
+- [Espacios Verticales](#espacios-verticales)
+- [Comentarios](#comentarios)
+- [Funciones](#funciones)
+- [Variables](#variables)
+- [Estructuras, Enumeraciones y Typedefs](#estructuras-enumeraciones-typedefs)
+- [Condicionales](#condicionales)
+- [Bucles](#bucles)
+- [Macros y Constantes Simbólicas](#macros-constantes-simbolicas)
+- [Archivos source y header](#archivos-source-header)
+- [Últimas palabras](#ultimas-palabras)
+- [Referencias](#referencias)
+
 ## Largo de Línea
 
 Por convención, la longitud máxima de una línea de código es de 80 caracteres en C, lo cual históricamente se basa en que los monitores de tamaño estándar de antiguos terminales de computadora podían mostrar 24 líneas verticalmente y 80 caracteres horizontalmente. Aunque la tecnología moderna ha dejado obsoleta la necesidad de mantener las líneas con un límite de 80 caracteres, sigue siendo una guía que debe considerarse una "parada suave", y una línea de 100 caracteres debería ser la más larga que se escribe en C; de lo contrario, los lectores necesitarán desplazarse horizontalmente al momento de leer el código. Si se necesitan más de 100 caracteres, puede ser el momento de repensar los nombres de las variables o el diseño en general.
@@ -15,7 +30,9 @@ int product_of_the_two_integer_values_from_user = first_collected_integer_value_
 
 ## Comentarios
 
-Los comentarios hacen que el código sea más legible, no solo para otros (por ejemplo, los docentes) sino también para usted, especialmente cuando pasan horas, días, semanas, meses o años entre cuando se escribió y cuando se pretende leer su propio código. Comentar muy poco es malo. Comentar demasiado es malo. Cúal es el punto justo? Comentar cada varias líneas de código (es decir, bloques interesantes) es una guía decente. Trate de escribir comentarios que respondan a una o ambas de estas preguntas:
+Los comentarios hacen que el código sea más legible, no solo para otros (por ejemplo, los docentes) sino también para usted, especialmente cuando pasan horas, días, semanas, meses o años entre cuando se escribió y cuando pretende leer su propio código. Pero recuerde: si bien los comentarios son muy importantes, el mejor código es **autodocumentado**. Dar nombres sensatos a tipos y variables es mucho mejor que usar nombres oscuros que luego deben explicar mediante comentarios.
+
+Comentar muy poco es malo. Comentar demasiado es malo. Cúal es el punto justo? Comentar cada varias líneas de código (es decir, bloques interesantes) es una guía decente. Trate de escribir comentarios que respondan a una o ambas de estas preguntas:
 
 1. ¿Qué hace este bloque?
 1. ¿Por qué implementé este bloque de esta manera?
@@ -30,7 +47,7 @@ float c = 5.0 / 9.0 * (f - 32.0);
 En otras palabras, no haga esto:
 
 ```c
-//Convert Fahrenheit to Celsius
+//Convert Fahrenheit to Celsius.
 float c = 5.0 / 9.0 * (f - 32.0);
 ```
 
@@ -44,7 +61,7 @@ float c = 5.0 / 9.0 * (f - 32.0);
 Ni esto:
 
 ```c
-float c = 5.0 / 9.0 * (f - 32.0); // Convert Fahrenheit to Celsius
+float c = 5.0 / 9.0 * (f - 32.0); // Convert Fahrenheit to Celsius.
 ```
 
 Al comenzo de sus archivos .c y .h debe haber un comentario que resuma lo que hace su programa (o ese archivo en particular), e información acerca del autor y fecha de creación del archivo, por ejemplo:
@@ -53,8 +70,8 @@ Al comenzo de sus archivos .c y .h debe haber un comentario que resuma lo que ha
 /*!
  * @file   hola.c
  * @brief  Saluda al mundo.
- * @author Javier Balloffet <javier.balloffet@gmail.com>
- * @date   Sep 7, 2018
+ * @author John Doe <john.doe@example.com>
+ * @date   Sep 21, 2020
  */
 ```
 
@@ -76,6 +93,8 @@ int square(int n)
 ```
 
 El correcto formato en los comentarios, permitirá generar la documentación de forma automática, con la herramienta [Doxygen](https://www.doxygen.nl/index.html).
+
+Por último, recuerde prestar atención a la puntuación, la ortografía y la gramática; es más fácil leer comentarios bien escritos que mal escritos.
 
 ## Condicionales
 
@@ -221,6 +240,14 @@ main()
 
 En cuanto a sus propias funciones, asegúrese de definirlas de manera similar, con cada llave en su propia línea y con el tipo de retorno en la misma línea que el nombre de la función, tal como lo hemos hecho con `main`.
 
+### Largo de las funciones
+
+Implemente funciones pequeñas y enfocadas.
+
+Si bien es cierto que las funciones largas a veces son apropiadas, si una función supera las 40 líneas, considere si se puede dividir sin dañar la estructura del programa.
+
+Incluso si su función larga funciona perfectamente ahora, alguien que la modifique en unos meses puede precisar agregar un nuevo comportamiento. Esto podría resultar en errores difíciles de encontrar. Mantener sus funciones breves y simples facilita que otras personas lean y modifiquen su código. Las funciones pequeñas también son más fáciles de testear.
+
 ## Indentación
 
 Indente el código con cuatro espacios a la vez para dejar en claro qué bloques de código están dentro de otros. Si usa la tecla Tab de su teclado para hacerlo, asegúrese de que su editor de texto esté configurado para convertir tabs (`\t`) en cuatro espacios; de lo contrario, es posible que su código no se imprima o no se muestre correctamente en la computadora de otra persona, ya que `\t` se renderiza de manera diferente en diferentes editores.
@@ -363,6 +390,18 @@ Y no declare punteros en una misma línea, como en:
 int* p, * n;
 ```
 
+### Visibilidad
+
+Evite utilizar variables globales siempre que sea posible, ya que esto genera alto acoplamiento entre distintos módulos y no es considerado una buena práctica de programación. 
+
+### Valor cero
+
+Para punteros, prefiera NULL a 0. Si bien los valores son equivalentes, NULL parece más un puntero para el lector, y algunos compiladores de C proporcionan definiciones especiales de NULL que les permiten dar warnings útiles. Nunca use NULL para valores numéricos (enteros o de punto flotante).
+
+Utilice '\0' para el caracter nulo en strings, ya que usar el tipo correcto hace que el código sea más legible.
+
+Utilize el valor literal 0 sólo para variables numéricas.
+
 ## Estructuras
 
 Declare una `estructura` como un tipo de la siguiente manera, con cada llave en su propia línea, los miembros correctamente indentados y con el nombre del tipo también en su propia línea:
@@ -386,3 +425,173 @@ typedef struct Node
 }
 Node;
 ```
+
+## Archivos Header
+
+En general, cada archivo .cc debe tener un archivo .h asociado. Existen algunas excepciones comunes, como tests unitarios y pequeños archivos .cc que contienen solo una función main().
+
+### La guarda #define
+
+Todos los archivos header deben tener guardas #define para prevenir inclusiones múltiples. El formato del nombre de la constante simbólica debe ser `PROYECTO_PATH_ARCHIVO_H_`.
+
+Para garantizar que sea único, deben basarse en la ruta completa en el árbol de origen de un proyecto. Por ejemplo, el archivo foo/src/bar/baz.h en el proyecto `foo` debe tener la siguiente guarda:
+
+```c
+#ifndef FOO_BAR_BAZ_H_
+#define FOO_BAR_BAZ_H_
+
+...
+
+#endif  // FOO_BAR_BAZ_H_
+```
+
+## sizeof
+
+Prefiera sizeof(nombre_de_variable) a sizeof(tipo).
+
+Use sizeof(nombre_de_variable) cuando tome el tamaño de una variable en particular, ya que se actualizará adecuadamente si alguien cambia el tipo de variable ahora o más tarde. Puede usar sizeof(tipo) para el código que no está relacionado con ninguna variable en particular.
+
+
+## Denominación
+
+Las reglas de coherencia más importantes son las que rigen la denominación. El estilo de un nombre nos informa inmediatamente qué tipo de cosa es la entidad nombrada: un tipo, una variable, una función, una constante, una macro, etc., sin necesidad de buscar la declaración de esa entidad. El motor de coincidencia de patrones en nuestro cerebro se basa en gran medida en estas reglas de denominación.
+
+Las reglas de nomenclatura son bastante arbitrarias, pero creemos que la coherencia es más importante que las preferencias individuales en esta área, por lo que, independientemente de si las considera sensatas o no, las reglas son las reglas.
+
+
+Reglas generales de nomenclatura
+
+Optimice la legibilidad utilizando nombres que sean claros incluso para las personas de un equipo diferente.
+
+Utilice nombres que describan el propósito o la intención del objeto. No se preocupe por ahorrar espacio horizontal, ya que es mucho más importante hacer que su código sea inmediatamente comprensible para un nuevo lector. Minimice el uso de abreviaturas que probablemente sean desconocidas para alguien ajeno a su proyecto (especialmente acrónimos e iniciales). No abrevie eliminando letras dentro de una palabra. Como regla general, una abreviatura probablemente esté bien si aparece en Wikipedia. En términos generales, el carácter descriptivo debe ser proporcional al alcance de visibilidad del nombre. Por ejemplo, n puede ser un buen nombre dentro de una función de 5 líneas, pero dentro del alcance de una clase, es probable que sea demasiado vago.
+
+### Nombre de Archivos
+
+Los nombres de archivo deben estar todos en minúsculas y pueden incluir guiones bajos '_'.
+
+Ejemplos de nombres de archivo aceptables:
+
+    my_module.c
+    mymodule.c
+    mymodule_test.c
+
+Los archivos C deben terminar en `.c` y los archivos de encabezado deben terminar en `.h`.
+
+### Nombre de Tipos
+
+Los nombres de todos los tipos (structs, typedefs y enums) tienen la misma convención de nomenclatura. Los nombres de los tipos deben comenzar con una letra mayúscula y tener una letra mayúscula para cada palabra nueva, sin guiones bajos. Por ejemplo:
+
+```c
+// Structs
+struct MyStruct
+{ ...
+
+// Typedefs
+typedef struct MyStruct MyStruct;
+
+// Enums
+enum MyEnum
+{ ...
+```
+
+### Nombre de Variables
+
+Los nombres de las variables (incluidos los parámetros de las funciones) y los miembros de datos de estructuras deben estar todos en minúsculas, con guiones bajos ('_') entre las palabras. Por ejemplo:
+
+```c
+// Variables.
+char table_name[20];
+
+// Estructuras.
+struct Student 
+{
+  char first_name[20];
+  char last_name[20];
+  int age;
+};
+```
+
+### Nombres de Macros y Constantes Simbólicas
+
+Macros y constantes simbólicas deben estar en mayúsculas, con guiones bajos ('_') entre las palabras. Por ejemplo:
+
+```c
+#define PI_ROUNDED 3.14
+#define MIN(x, y) ...
+```
+
+### Nombres de Funciones
+
+Los nombres de las funciones deben estar todos en minúsculas, con guiones bajos ('_') entre las palabras. Por ejemplo:
+
+```c
+// Correcto
+void my_function(void);
+void myfunction(void);
+
+// Incorrecto
+void MYFunction(void);
+void myFunction();
+```
+
+### Nombres de Enumeraciones
+
+Las enumeraciones deden ser nombradas como las constantes simbólicas. Por ejemplo:
+
+```c
+enum class ReturnErrors {
+  OK = 0,
+  OUT_OF_MEMORY,
+  MALFORMED_INPUT,
+};
+```
+
+## Operadores
+
+Los operadores de asignación siempre tienen espacios a su alrededor. Por ejemplo:
+
+```c
+// Correcto
+x = 0;
+```
+
+Otros operadores binarios también suelen tener espacios a su alrededor, pero está bien eliminar espacios alrededor de los factores. Los paréntesis no deben tener espacios del lado interno. Por ejemplo:
+
+```c
+// Correcto
+v = w * x + y / z;
+v = w*x + y/z;
+v = w * (x + z);
+```
+
+No coloque espacios que separen a los operadores unarios y sus argumentos. Por ejemplo:
+
+```c
+// Correcto
+x = -5;
+++x;
+if (x && !y) ...
+```
+
+## Espacios Verticales
+
+Minimice el uso de espacios verticales en blanco.
+
+Esto es más un principio que una regla: no use líneas en blanco cuando no sea necesario. En particular, no ponga más de una o dos líneas en blanco entre funciones, evite comenzar las funciones con una línea en blanco, no termine las funciones con una línea en blanco y sea parco con el uso de líneas en blanco. Una línea en blanco dentro de un bloque de código sirve como un salto de párrafo en prosa: separa visualmente dos pensamientos.
+
+El principio básico es: cuanto más código cabe en una pantalla, más fácil es seguir y comprender el flujo de control del programa. Utilice espacios en blanco a propósito para proporcionar separación en ese flujo.
+
+## Últimas Palabras
+
+Use el sentido común y SEA CONSISTENTE.
+
+El objetivo de tener pautas de estilo es tener un vocabulario común de codificación para que la gente pueda concentrarse en lo que está diciendo, en lugar de en cómo lo está diciendo. Las reglas de estilo globales aquí presentadas sirven para que la gente conozca el vocabulario y manejen un lenguaje común.
+
+OK, suficiente cháchara sobre escritura de código; el código en sí es mucho más interesante. ¡A programar, que te diviertas!
+
+## Referencias
+
+Guía de estilo inspirada y basada en:
+
+- https://cs50.readthedocs.io/style/c/
+- https://github.com/MaJerle/c-code-style
