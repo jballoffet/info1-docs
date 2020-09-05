@@ -6,31 +6,33 @@ Las reglas de coherencia más importantes son las que rigen la denominación. El
 
 ## Tabla de Contenido
 
-- [Largo de Línea](#largo-linea)
+- [Largo de Línea](#largo-de-línea)
 - [Comentarios](#comentarios)
 - [Espacios Verticales](#espacios-verticales)
-- [Indentación](#indentacion)
+- [Indentación](#indentación)
 - [Condicionales](#condicionales)
 - [Bucles](#bucles)
 - [Funciones](#funciones)
 - [Variables](#variables)
 - [Punteros](#punteros)
-- [Macros y Constantes Simbólicas](#macros-constantes-simbolicas)
-- [Estructuras, Enumeraciones y Typedefs](#estructuras-enumeraciones-typedefs)
-- [Archivos source y header](#archivos-source-header)
+- [Macros y Constantes Simbólicas](#macros-y-constantes-simbólicas)
+- [Estructuras, Enumeraciones y Typedefs](#estructuras-enumeraciones-y-typedefs)
+- [Archivos Fuente (Source) y Encabezado (Header)](#archivos-fuente-(source)-y-encabezado-(header))
 - [Operadores](#operadores)
-- [Últimas palabras](#ultimas-palabras)
+- [Últimas palabras](#últimas-palabras)
 - [Referencias](#referencias)
 
 ## Largo de Línea
 
-Por convención, la longitud máxima de una línea de código es de 80 caracteres en C, lo cual históricamente se basa en que los monitores de tamaño estándar de antiguos terminales de computadora podían mostrar 24 líneas verticalmente y 80 caracteres horizontalmente. Aunque la tecnología moderna ha dejado obsoleta la necesidad de mantener las líneas con un límite de 80 caracteres, sigue siendo una guía que debe considerarse una "parada suave", y una línea de 100 caracteres debería ser la más larga que se escriba en C; de lo contrario, los lectores necesitarán desplazarse horizontalmente al momento de leer el código. Si se necesitan más de 100 caracteres, puede ser el momento de repensar los nombres de las variables o el diseño en general.
+Por convención, la longitud máxima de una línea de código es de 80 caracteres en C, lo cual históricamente se basa en que los monitores de tamaño estándar de antiguos terminales de computadora podían mostrar 24 líneas verticalmente y 80 caracteres horizontalmente. Aunque la tecnología moderna ha dejado obsoleta la necesidad de mantener las líneas con un límite de 80 caracteres, sigue siendo una guía que debe considerarse una "parada suave", y una línea de 100 caracteres debería ser la más larga que se escriba en C; de lo contrario, los lectores necesitarán desplazarse horizontalmente al momento de leer el código. Si se necesitan más de 100 caracteres, puede ser el momento de repensar los nombres de las variables o el diseño en general. 
+
+En otras palabras, evite hacer cosas como la siguiente: 
 
 ```c
 // Las siguientes líneas de código primero le piden al usuario que ingrese dos valores enteros y luego multiplica esos dos valores enteros juntos para que puedan usarse más adelante en el programa.
-int first_collected_integer_value_from_user = get_int("Ingrese un numero entero: ");
-int second_collected_integer_value_from_user = get_int("Ingrese otro numero entero: ");
-int product_of_the_two_integer_values_from_user = first_collected_integer_value_from_user * second_collected_integer_value_from_user;
+int primer_numero_entero_ingresado_por_el_usuario = obtener_int("Ingrese un numero entero: ");
+int segundo_numero_entero_ingresado_por_el_usuario = obtener_int("Ingrese otro numero entero: ");
+int producto_de_los_dos_numeros_enteros_ingresados_por_el_usuario = primer_numero_entero_ingresado_por_el_usuario * segundo_numero_entero_ingresado_por_el_usuario;
 ```
 
 ## Comentarios
@@ -46,27 +48,27 @@ Dentro de las funciones, intercale los comentarios con el código y manténgalos
 
 ```c
 // Convierto de Fahrenheit a Celsius
-float celsius_degrees = 5.0 / 9.0 * (fahrenheit_degrees - 32.0);
+float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0);
 ```
 
 En otras palabras, no haga esto:
 
 ```c
 //Convierto de Fahrenheit a Celsius
-float celsius_degrees = 5.0 / 9.0 * (fahrenheit_degrees - 32.0);
+float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0);
 ```
 
 Ni esto:
 
 ```c
 // convierto de Fahrenheit a Celsius
-float celsius_degrees = 5.0 / 9.0 * (fahrenheit_degrees - 32.0);
+float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0);
 ```
 
 Ni esto:
 
 ```c
-float celsius_degrees = 5.0 / 9.0 * (fahrenheit_degrees - 32.0); // Convierto de Fahrenheit a Celsius
+float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0); // Convierto de Fahrenheit a Celsius
 ```
 
 Al comenzo de sus archivos `.c` y `.h` debe haber un comentario que resuma lo que hace su programa (o ese módulo en particular), e información acerca del autor y fecha de creación del archivo, por ejemplo:
@@ -158,7 +160,7 @@ Observe como:
 - **no** hay ningún espacio inmediatamente luego de cada `(` o inmediatamente antes de cada `)`; y
 - cada invocación a `printf` se encuentra indentada con **4** espacios.
 
-Para ahorrar espacio, a algunos programadores les gusta mantener la primera llave en la misma línea que la condición en sí, pero no lo recomendamos, ya que es más difícil de leer, así que evite hacer esto:
+Para ahorrar espacio, a algunos programadores les gusta mantener la primera llave en la misma línea que la condición en sí, pero no lo recomendamos, ya que es más difícil de leer, así que **evite** hacer esto:
 
 ```c
 if (x < 0) {
@@ -168,7 +170,7 @@ if (x < 0) {
 }
 ```
 
-Y definitivamente no haga esto:
+Y definitivamente **no** haga esto:
 
 ```c
 if (x < 0)
@@ -179,6 +181,15 @@ else
     {
     printf("x no es negativo\n");
     }
+```
+
+Y **siempre** coloque llaves, por más que el bloque sea de una sola línea, por lo que **tampoco** haga esto:
+
+```c
+if (x < 0)
+    printf("x es negativo\n");
+else
+    printf("x no es negativo\n");
 ```
 
 ### Switch
@@ -218,11 +229,12 @@ Observe como:
 Las estructuras repetitivas `for` deben tener el siguiente estilo:
 
 ```c
-for (int i = 0; i < LIMIT; i++)
+int i, j, k;
+for (i = 0; i < LIMIT; i++)
 {
-    for (int j = 0; j < LIMIT; j++)
+    for (j = 0; j < LIMIT; j++)
     {
-        for (int k = 0; k < LIMIT; k++)
+        for (k = 0; k < LIMIT; k++)
         {
             // Haz algo.
         }
@@ -320,43 +332,45 @@ Incluso si su función larga funciona perfectamente ahora, alguien que la modifi
 
 ### Estilo
 
-Los nombres de las funciones deben estar todos en minúsculas, con guiones bajos (`'_'`) entre las palabras. Por ejemplo:
+Los nombres de las funciones deben estar todos en **minúsculas**, con guiones bajos (`'_'`) entre las palabras. Por ejemplo:
 
 ```c
 // Correcto
-void my_function(void);
-void myfunction(void);
+void mi_funcion(int a);
 
 // Incorrecto
-void MYFunction(void);
-void myFunction();
+void mifuncion(int a);
+void MIFuncion(int a);
+void miFuncion(int a);
+void MiFuncion(int a);
 ```
 
 ## Variables
 
-Debido a que info1 usa [C99](http://en.wikipedia.org/wiki/C99), no defina todas sus variables en la parte superior de sus funciones sino, más bien, cuándo y dónde las necesita. Además, de visibilidad a sus variables lo más estrictamente posible. Por ejemplo, si solo se necesita `i` por el bien de un bucle, declare `i` dentro del mismo bucle:
+Siempre declare todas sus variables locales al **comienzo** de las funciones, antes de la primera sentencia. Aunque está bien usar variables como `i`, `j` y `k` para una iteración, la mayoría de las variables deben tener un nombre más específico. Si está sumando algunos valores, por ejemplo, llame a su variable `suma`.
 
-```c
-for (int i = 0; i < LIMIT; i++)
-{
-    printf("%i\n", i);
-}
-```
-
-Aunque está bien usar variables como `i`, `j` y `k` para la iteración, la mayoría de las variables deben tener un nombre más específico. Si está sumando algunos valores, por ejemplo, llame a su variable `suma`. Si el nombre de su variable justifica dos palabras (por ejemplo, `is_ready`), coloque un guión bajo entre ellas, una convención popular en C.
-
-Utilice nombres que describan el propósito o la intención de la variable. No se preocupe por ahorrar espacio horizontal, ya que es mucho más importante hacer que su código sea inmediatamente comprensible para un nuevo lector. Minimice el uso de abreviaturas que probablemente sean desconocidas para alguien ajeno a su proyecto (especialmente acrónimos e iniciales). No abrevie eliminando letras dentro de una palabra. Como regla general, una abreviatura probablemente esté bien si aparece en Wikipedia.
+Utilice nombres que describan el propósito o la intención de la variable. Minimice el uso de abreviaturas que probablemente sean desconocidas para alguien ajeno a su proyecto (especialmente acrónimos e iniciales). No abrevie eliminando letras dentro de una palabra. Como regla general, una abreviatura probablemente esté bien si aparece en Wikipedia.
 
 Si declara varias variables del mismo tipo a la vez, está bien declararlas juntas, como en:
 
 ```c
-int apples, bananas, strawberries;
+int manzanas, bananas, frutillas;
 ```
 
-Sólo no inicialice algunas sí pero otras no, como en:
+Sólo evite inicializar algunas sí pero otras no, como en:
 
 ```c
-int apples = 0, bananas, strawberries = 0;
+int manzanas = 0, bananas, frutillas = 0;
+```
+
+**Nunca** modifique el largo de arreglos estáticos en forma dinámica. En su lugar, utilice la asignación de memoria dinámica con las funciones estándar de C `malloc()` y `free()`.
+
+```c
+// Incorrecto
+void mi_funcion(int largo)
+{
+    int arreglo[largo];
+}
 ```
 
 ### Visibilidad
@@ -368,8 +382,8 @@ int apples = 0, bananas, strawberries = 0;
 Los nombres de las variables (incluidos los parámetros de las funciones) deben estar todos en **minúsculas**, con **guiones bajos** (`'_'`) entre las palabras. Por ejemplo:
 
 ```c
-char table_name[20];
-int count;
+char nombre_tabla[20];
+int cantidad;
 ```
 
 ## Punteros
@@ -425,7 +439,7 @@ Utilice el valor literal `0` sólo para variables de tipo numérico.
 Las macros y constantes simbólicas deben ser declaradas como se muestra a continuación, en **mayúsculas** y con guiones bajos (`'_'`) entre las palabras. Por ejemplo:
 
 ```c
-#define PI_ROUNDED 3.14
+#define PI_REDONDEADO 3.14
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 ```
 
@@ -436,11 +450,11 @@ Las macros y constantes simbólicas deben ser declaradas como se muestra a conti
 Declare una `estructura` como un tipo de la siguiente manera:
 
 ```c
-typedef struct Student
+typedef struct Estudiante
 {
-    char* name;
-    int age;
-} Student;
+    char* nombre;
+    int edad;
+} Estudiante;
 ```
 
 Observe como:
@@ -452,11 +466,11 @@ Observe como:
 Colocar el tipo de dato utilizando el mismo nombre, tanto en la definición de la estructura como en el `typedef`, permite colocar miembros que sean punteros al mismo tipo que el de la estructura sin tener que realizar más cambios, por ejemplo:
 
 ```c
-typedef struct Node
+typedef struct Nodo
 {
-    int value;
-    struct Node* next;
-} Node;
+    int valor;
+    struct Nodo* proximo;
+} Nodo;
 ```
 
 #### Estilo
@@ -464,12 +478,13 @@ typedef struct Node
 Los nombres de los miembros de datos de la estructura, al igual que las variables, deben estar todos en **minúsculas**, con **guiones bajos** (`'_'`) entre las palabras. Por ejemplo:
 
 ```c
-typedef struct Student 
+typedef struct Estudiante 
 {
-  char first_name[20];
-  char last_name[20];
-  int age;
-} Student;
+  char primer_nombre[20];
+  char segundo_nombre[20];
+  char apellido[20];
+  int edad;
+} Estudiante;
 ```
 
 ### Enumeraciones
@@ -477,11 +492,11 @@ typedef struct Student
 Declare una `enumeracion` como un tipo de la siguiente manera:
 
 ```c
-typedef enum Boolean
+typedef enum Booleano
 {
-    FALSE = 0,
-    TRUE,
-} Boolean;
+    FALSO = 0,
+    VERDADERO,
+} Booleano;
 ```
 
 Observe como:
@@ -495,12 +510,12 @@ Observe como:
 Los nombres de los posibles valores de la enumeración, al igual que las constantes simbólicas, deben estar todos en **mayúsculas**, con **guiones bajos** (`'_'`) entre las palabras. Por ejemplo:
 
 ```c
-typedef enum ReturnErrors
+typedef enum Errores
 {
     OK = 0,
-    OUT_OF_MEMORY,
-    MALFORMED_INPUT,
-} ReturnErrors;
+    SIN_MEMORIA,
+    DATOS_INCORRECTOS,
+} Errores;
 ```
 
 ### Typedef
@@ -509,22 +524,22 @@ Los nombres de todos los tipos (`structs`, `enums` y `typedefs`) tienen la misma
 
 ```c
 // Structs
-typedef struct MyStruct
+typedef struct MiStruct
 { 
     // ...
-} MyStruct;
+} MiStruct;
 
 // Enums
-typedef enum MyEnum
+typedef enum MiEnum
 {
     // ...
-} MyEnum;
+} MiEnum;
 
 // Typedefs
 typedef char* String;
 ```
 
-## Archivos Source y Header
+## Archivos Fuente (Source) y Encabezado (Header)
 
 En general, cada archivo `.c` debe tener un archivo `.h` asociado. Existen algunas excepciones comunes, como tests unitarios y pequeños archivos `.c` que contienen sólo una función `main()`.
 
@@ -548,9 +563,9 @@ Para garantizar que sea único, deben basarse en la ruta completa en el árbol d
 Los nombres de los archivos deben estar todos en **minúsculas**, con **guiones bajos** (`'_'`) entre las palabras. Por ejemplo:
 
 ```
-my_module.c
-my_module.h
-my_module_test.c
+mi_modulo.c
+mi_modulo.h
+mi_modulo_test.c
 ```
 
 Los archivos fuente deben terminar en `.c` y los archivos de encabezado deben terminar en `.h`.
