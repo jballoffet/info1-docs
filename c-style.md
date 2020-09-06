@@ -183,7 +183,7 @@ else
     }
 ```
 
-Y **siempre** coloque llaves, por más que el bloque sea de una sola línea, por lo que **tampoco** haga esto:
+Y **siempre** coloque llaves, por más que el bloque sea de una sola línea, por lo cual **tampoco** haga esto:
 
 ```c
 if (x < 0)
@@ -671,3 +671,4 @@ Guía de estilo inspirada y basada en:
 
 - https://cs50.readthedocs.io/style/c/
 - https://github.com/MaJerle/c-code-style
+- https://google.github.io/styleguide/cppguide.html
