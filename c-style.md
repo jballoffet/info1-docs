@@ -82,7 +82,7 @@ Al comenzo de sus archivos `.c` y `.h` debe haber un comentario que resuma lo qu
  */
 ```
 
-Encima de la declaración (prototipo) de cada una de sus funciones (excepto, quizás, `main`), debe haber un comentario que resuma lo que hace dicha función, por ejemplo:
+Encima de la declaración (prototipo) de cada una de sus funciones (excepto `main`), debe haber un comentario que resuma lo que hace dicha función, por ejemplo:
 
 ```c
 /*!
@@ -91,9 +91,9 @@ Encima de la declaración (prototipo) de cada una de sus funciones (excepto, qui
  * @param[in] n Valor de entrada.
  * @return	  El cuadrado del valor de entrada.
  */
-int square(int n);
+int cuadrado(int n);
 
-int square(int n)
+int cuadrado(int n)
 {
     return n * n;
 }
@@ -230,11 +230,11 @@ Las estructuras repetitivas `for` deben tener el siguiente estilo:
 
 ```c
 int i, j, k;
-for (i = 0; i < LIMIT; i++)
+for (i = 0; i < LIMITE; i++)
 {
-    for (j = 0; j < LIMIT; j++)
+    for (j = 0; j < LIMITE; j++)
     {
-        for (k = 0; k < LIMIT; k++)
+        for (k = 0; k < LIMITE; k++)
         {
             // Haz algo.
         }
@@ -363,13 +363,14 @@ Sólo evite inicializar algunas sí pero otras no, como en:
 int manzanas = 0, bananas, frutillas = 0;
 ```
 
-**Nunca** modifique el largo de arreglos estáticos en forma dinámica. En su lugar, utilice la asignación de memoria dinámica con las funciones estándar de C `malloc()` y `free()`.
+**Nunca** modifique el largo de arreglos estáticos en forma dinámica. En su lugar, utilice asignación de memoria dinámica con las funciones estándar de C `malloc()` y `free()`.
 
 ```c
 // Incorrecto
 void mi_funcion(int largo)
 {
     int arreglo[largo];
+    // ...
 }
 ```
 
@@ -556,6 +557,59 @@ Para garantizar que sea único, deben basarse en la ruta completa en el árbol d
 ...
 
 #endif  // FOO_BAR_BAZ_H_
+```
+
+### Includes
+
+Se debe evitar colocar `#include` en archivos header, salvo que sea estrictamente necesario (por ejemplo, debido a la necesidad de incluir la declaración de un nuevo tipo de dato). Esto permite que quien incluya nuestro archivo de encabezado no incluya además múltiples archivos de encabezado, los cuales incluso podrían ser incompatibles con los suyos.
+
+Por lo tanto, **evite** hacer esto:
+
+```c
+// hola.c
+#include "hola.h"
+
+void saludar(void)
+{
+    printf("Hola mundo\n");
+}
+
+// hola.h
+#ifndef HOLA_H_
+#define HOLA_H_
+
+#include <stdio.h>
+
+/*!
+ * @brief Saluda al mundo.
+ */
+void saludar(void);
+
+#endif  // HOLA_H_
+```
+
+Y **prefiera** hacer esto:
+
+```c
+// hola.c
+#include <stdio.h>
+#include "hola.h"
+
+void saludar(void)
+{
+    printf("Hola mundo\n");
+}
+
+// hola.h
+#ifndef HOLA_H_
+#define HOLA_H_
+
+/*!
+ * @brief Saluda al mundo.
+ */
+void saludar(void);
+
+#endif  // HOLA_H_
 ```
 
 ### Estilo
