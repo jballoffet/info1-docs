@@ -1,6 +1,6 @@
 # Guía de Estilo para C
 
-No hay una forma correcta de estilizar el código. Pero definitivamente hay muchas formas incorrectas (o al menos, malas). Aun así, info1 le pide que se adhiera a las convenciones siguientes para que podamos analizar de manera confiable el estilo de su código. De manera similar, las empresas suelen adoptar sus propias convenciones de estilo.
+No hay una forma correcta de estilizar el código. Pero definitivamente hay muchas formas incorrectas (o al menos, malas). Aun así, info1 te pide que te adhieras a las convenciones siguientes para que podamos analizar de manera confiable el estilo de tu código. De manera similar, las empresas suelen adoptar sus propias convenciones de estilo.
 
 Las reglas de coherencia más importantes son las que rigen la denominación. El estilo de un nombre nos informa inmediatamente qué tipo de cosa es la entidad nombrada: un tipo, una variable, una función, una constante, una macro, etc., sin necesidad de buscar la declaración de esa entidad. El motor de coincidencia de patrones en nuestro cerebro se basa en gran medida en estas reglas de denominación.
 
@@ -26,7 +26,7 @@ Las reglas de coherencia más importantes son las que rigen la denominación. El
 
 Por convención, la longitud máxima de una línea de código es de 80 caracteres en C, lo cual históricamente se basa en que los monitores de tamaño estándar de antiguos terminales de computadora podían mostrar 24 líneas verticalmente y 80 caracteres horizontalmente. Aunque la tecnología moderna ha dejado obsoleta la necesidad de mantener las líneas con un límite de 80 caracteres, sigue siendo una guía que debe considerarse una "parada suave", y una línea de 100 caracteres debería ser la más larga que se escriba en C; de lo contrario, los lectores necesitarán desplazarse horizontalmente al momento de leer el código. Si se necesitan más de 100 caracteres, puede ser el momento de repensar los nombres de las variables o el diseño en general. 
 
-En otras palabras, evite hacer cosas como la siguiente: 
+En otras palabras, evitá hacer cosas como la siguiente:
 
 ```c
 // Las siguientes líneas de código primero le piden al usuario que ingrese dos valores enteros y luego multiplica esos dos valores enteros juntos para que puedan usarse más adelante en el programa.
@@ -37,21 +37,21 @@ int producto_de_los_dos_numeros_enteros_ingresados_por_el_usuario = primer_numer
 
 ## Comentarios
 
-Los comentarios hacen que el código sea más legible, no solo para otros (por ejemplo, los docentes) sino también para usted, especialmente cuando pasan horas, días, semanas, meses o años entre cuando escribió y cuando pretende leer su propio código. Pero recuerde: si bien los comentarios son muy importantes, el mejor código es **autodocumentado**. Dar nombres sensatos a tipos y variables es mucho mejor que usar nombres oscuros que luego deben explicar mediante comentarios.
+Los comentarios hacen que el código sea más legible, no solo para otros (por ejemplo, los docentes) sino también para vos, especialmente cuando pasan horas, días, semanas, meses o años entre cuando escribió y cuando pretendés leer tu propio código. Pero recordá: si bien los comentarios son muy importantes, el mejor código es **autodocumentado**. Dar nombres sensatos a tipos y variables es mucho mejor que usar nombres oscuros que luego se deben explicar mediante comentarios.
 
-Comentar muy poco es malo. Comentar demasiado es malo. ¿Cuál es el punto justo? Comentar cada varias líneas de código (es decir, bloques interesantes) es una guía decente. Trate de escribir comentarios que respondan a una o ambas de estas preguntas:
+Comentar muy poco es malo. Comentar demasiado es malo. ¿Cuál es el punto justo? Comentar cada varias líneas de código (es decir, bloques interesantes) es una guía decente. Tratá de escribir comentarios que respondan a una o ambas de estas preguntas:
 
 1. ¿Qué hace este bloque?
 1. ¿Por qué implementé este bloque de esta manera?
 
-Dentro de las funciones, intercale los comentarios con el código y manténgalos cortos (idealmente, una línea), de lo contrario, será difícil distinguir los comentarios del código, incluso con [resaltado de sintaxis](https://es.wikipedia.org/wiki/Resaltado_de_sintaxis). Coloque el comentario encima de la o las líneas a las que se aplica. No es necesario escribir oraciones completas, pero escriba en mayúscula la primera palabra del comentario (a menos que sea el nombre de una función, variable o similar) y deje un espacio entre el `//` y el primer carácter de su comentario, como en:
+Dentro de las funciones, intercalá los comentarios con el código y mantenelos cortos (idealmente, una línea), de lo contrario, será difícil distinguir los comentarios del código, incluso con [resaltado de sintaxis](https://es.wikipedia.org/wiki/Resaltado_de_sintaxis). Colocá el comentario encima de la o las líneas a las que se aplica. No es necesario escribir oraciones completas, pero escribí en mayúscula la primera palabra del comentario (a menos que sea el nombre de una función, variable o similar) y dejá un espacio entre el `//` y el primer caracter del comentario, como en:
 
 ```c
 // Convierto de Fahrenheit a Celsius
 float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0);
 ```
 
-En otras palabras, no haga esto:
+En otras palabras, no hagas esto:
 
 ```c
 //Convierto de Fahrenheit a Celsius
@@ -71,7 +71,7 @@ Ni esto:
 float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0); // Convierto de Fahrenheit a Celsius
 ```
 
-Al comenzo de sus archivos `.c` y `.h` debe haber un comentario que resuma lo que hace su programa (o ese módulo en particular), e información acerca del autor y fecha de creación del archivo, por ejemplo:
+Al comenzo de tus archivos `.c` y `.h` debe haber un comentario que resuma lo que hace tu programa (o ese módulo en particular), e información acerca del autor y la fecha de creación del archivo, por ejemplo:
 
 ```c
 /*!
@@ -82,7 +82,7 @@ Al comenzo de sus archivos `.c` y `.h` debe haber un comentario que resuma lo qu
  */
 ```
 
-Encima de la declaración (prototipo) de cada una de sus funciones (excepto `main`), debe haber un comentario que resuma lo que hace dicha función, por ejemplo:
+Encima de la declaración (prototipo) de cada una de tus funciones (excepto quizás `main`), debe haber un comentario que resuma lo que hace dicha función, por ejemplo:
 
 ```c
 /*!
@@ -101,19 +101,19 @@ int cuadrado(int n)
 
 El correcto formato en los comentarios permitirá generar la documentación de forma automática, haciendo uso de la herramienta [Doxygen](https://www.doxygen.nl/index.html).
 
-Por último, recuerde prestar atención a la puntuación, la ortografía y la gramática; es más fácil leer comentarios bien escritos que mal escritos.
+Por último, recordá prestar atención a la puntuación, la ortografía y la gramática; es más fácil leer comentarios bien escritos que mal escritos.
 
 ## Espacios Verticales
 
-Minimice el uso de espacios verticales en blanco.
+Minimizá el uso de espacios verticales en blanco.
 
-Esto es más un principio que una regla: no utilice líneas en blanco cuando no sea necesario. En particular, no ponga más de una o dos líneas en blanco entre funciones, evite comenzar las funciones con una línea en blanco, no termine las funciones con una línea en blanco y sea parco con el uso de líneas en blanco. Una línea en blanco dentro de un bloque de código sirve como un salto de párrafo en prosa: separa visualmente dos pensamientos.
+Esto es más un principio que una regla: no utilices líneas en blanco cuando no sea necesario. En particular, no pongas más de una o dos líneas en blanco entre funciones, evitá comenzar las funciones con una línea en blanco, no termines las funciones con una línea en blanco y sea parco con el uso de líneas en blanco. Una línea en blanco dentro de un bloque de código sirve como un salto de párrafo en prosa: separa visualmente dos pensamientos.
 
-El principio básico es: cuanto más código cabe en una pantalla, más fácil es seguir y comprender el flujo de control del programa. Utilice espacios en blanco a propósito para proporcionar separación en ese flujo.
+El principio básico es: cuanto más código cabe en una pantalla, más fácil es seguir y comprender el flujo de control del programa. Utilizá espacios en blanco a propósito para proporcionar separación en ese flujo.
 
 ## Indentación
 
-Indente el código con **4 (cuatro)** espacios a la vez para dejar en claro qué bloques de código están dentro de otros. Si usa la tecla `Tab` de su teclado para hacerlo, asegúrese de que su editor de texto esté configurado para convertir tabs (`\t`) en cuatro espacios; de lo contrario, es posible que su código no se imprima o no se muestre correctamente en la computadora de otra persona, ya que `\t` se renderiza de manera diferente en diferentes editores.
+Indentá (colocar sangrías) el código con **4 (cuatro)** espacios a la vez para dejar en claro qué bloques de código están dentro de otros. Si usás la tecla `Tab` de tu teclado para hacerlo, asegurate de que tu editor de texto esté configurado para convertir tabs (`\t`) en cuatro espacios; de lo contrario, es posible que tu código no se imprima o no se muestre correctamente en la computadora de otra persona, ya que `\t` se renderiza de manera diferente en diferentes editores.
 
 A continuación se muestra un código indentado correctamente:
 
@@ -152,7 +152,7 @@ else
 }
 ```
 
-Observe como:
+Observá como:
 
 - las llaves se encuentran bien **alineadas**, cada una en su propia línea, dejando perfectamente claro lo que hay dentro del bloque;
 - hay un **único** espacio luego de cada `if`; 
@@ -160,7 +160,7 @@ Observe como:
 - **no** hay ningún espacio inmediatamente luego de cada `(` o inmediatamente antes de cada `)`; y
 - cada invocación a `printf` se encuentra indentada con **4** espacios.
 
-Para ahorrar espacio, a algunos programadores les gusta mantener la primera llave en la misma línea que la condición en sí, pero no lo recomendamos, ya que es más difícil de leer, así que **evite** hacer esto:
+Para ahorrar espacio, a algunos programadores les gusta mantener la primera llave en la misma línea que la condición en sí, pero no lo recomendamos, ya que es más difícil de leer, así que **evitá** hacer esto:
 
 ```c
 if (x < 0) {
@@ -170,7 +170,7 @@ if (x < 0) {
 }
 ```
 
-Y definitivamente **no** haga esto:
+Y definitivamente **no** hagas esto:
 
 ```c
 if (x < 0)
@@ -183,13 +183,22 @@ else
     }
 ```
 
-Y **siempre** coloque llaves, por más que el bloque sea de una sola línea, por lo cual **tampoco** haga esto:
+Y **siempre** colocá llaves, por más que el bloque sea de una sola línea, por lo cual **tampoco** hagas esto:
 
 ```c
 if (x < 0)
     printf("x es negativo\n");
 else
     printf("x no es negativo\n");
+```
+
+Finalmente, en caso de requerir evaluar múltiples condiciones, recordá utilizar paréntesis y dejar un espacio entre los paréntesis y los operadores lógicos:
+
+```c
+if ((x > 2) && (x < 5))
+{
+    printf("x es mayor que 2 y menor que 5\n");
+}
 ```
 
 ### Switch
@@ -213,7 +222,7 @@ switch (n)
 }
 ```
 
-Observe como:
+Observá como:
 
 - cada llave se encuentra en su **propia** línea;
 - hay un **único** espacio luego de `switch`; 
@@ -236,20 +245,20 @@ for (i = 0; i < LIMITE; i++)
     {
         for (k = 0; k < LIMITE; k++)
         {
-            // Haz algo.
+            // Hacé algo.
         }
     }
 }
 ```
 
-Observe como:
+Observá como:
 
 - cada llave se encuentra en su **propia** línea;
 - hay un **único** espacio luego de `for`;
 - **no** hay ningún espacio inmediatamente luego de cada `(` o inmediatamente antes de cada `)`; y
 - el cuerpo del bucle (un comentario en este caso) se encuentra indentado con **4** espacios.
 
-Siempre que necesite variables temporales para la iteración, use `i`, luego` j`, luego `k`, a menos que nombres más específicos hagan que su código sea más legible. Si necesita más de tres variables para la iteración, ¡podría ser el momento de repensar su diseño!
+Siempre que necesites variables temporales para la iteración, usá `i`, luego` j`, luego `k`, a menos que nombres más específicos hagan que tu código sea más legible. Si necesitas más de tres variables para la iteración, ¡podría ser el momento de repensar tu diseño!
 
 ### while
 
@@ -258,11 +267,11 @@ Las estructuras repetitivas `while` deben tener el siguiente estilo:
 ```c
 while (condición)
 {
-    // Haz algo.
+    // Hacé algo.
 }
 ```
 
-Observe como:
+Observá como:
 
 - cada llave se encuentra en su **propia** línea;
 - hay un **único** espacio luego de `while`;
@@ -276,11 +285,11 @@ Las estructuras repetitivas `do ... while` deben tener el siguiente estilo:
 ```c
 do
 {
-    // Haz algo.
+    // Hacé algo.
 } while (condición);
 ```
 
-Observe como:
+Observá como:
 
 - las llaves se encuentran bien **alineadas**;
 - el `while` se encuentra en la **misma** línea que la llave de cierre, separados entre sí por **1** espacio;
@@ -290,7 +299,7 @@ Observe como:
 
 ## Funciones
 
-De acuerdo con [C99](http://en.wikipedia.org/wiki/C99), asegúrese de declarar `main` así:
+De acuerdo con [C99](http://en.wikipedia.org/wiki/C99), asegurate de declarar `main` así:
 
 ```c
 int main(void)
@@ -320,15 +329,15 @@ int main(int argc, char** argv)
 }
 ```
 
-En cuanto a sus propias funciones, asegúrese de definirlas de manera similar, con cada llave en su propia línea y con el tipo de retorno en la misma línea que el nombre de la función, tal como lo hemos hecho con `main`.
+En cuanto a tus propias funciones, asegurate de definirlas de manera similar, con cada llave en su propia línea y con el tipo de retorno en la misma línea que el nombre de la función, tal como lo hicimos con `main`.
 
 ### Largo de las funciones
 
-Implemente funciones pequeñas y enfocadas.
+Implementá funciones pequeñas y enfocadas.
 
-Si bien es cierto que las funciones largas a veces son apropiadas, si una función supera las **40** líneas, considere si se puede dividir sin dañar la estructura del programa.
+Si bien es cierto que las funciones largas a veces son apropiadas, si una función supera las **40** líneas, considerá si se puede dividir sin dañar la estructura del programa.
 
-Incluso si su función larga funciona perfectamente ahora, alguien que la modifique en unos meses puede precisar agregar un nuevo comportamiento. Esto podría resultar en errores difíciles de encontrar. Mantener sus funciones breves y simples facilita que otras personas lean y modifiquen su código. Las funciones pequeñas también son más fáciles de testear.
+Incluso si tu función larga funciona perfectamente ahora, alguien que la modifique en unos meses puede precisar agregar un nuevo comportamiento. Esto podría resultar en errores difíciles de encontrar. Mantener tus funciones breves y simples facilita que otras personas lean y modifiquen tu código. Las funciones pequeñas también son más fáciles de testear.
 
 ### Estilo
 
@@ -347,23 +356,23 @@ void MiFuncion(int a);
 
 ## Variables
 
-Siempre declare todas sus variables locales al **comienzo** de las funciones, antes de la primera sentencia. Aunque está bien usar variables como `i`, `j` y `k` para una iteración, la mayoría de las variables deben tener un nombre más específico. Si está sumando algunos valores, por ejemplo, llame a su variable `suma`.
+Siempre declará todas tus variables locales al **comienzo** de las funciones, antes de la primera sentencia. Aunque está bien usar variables como `i`, `j` y `k` para una iteración, la mayoría de las variables deben tener un nombre más específico. Si estás sumando algunos valores, por ejemplo, llamá a tu variable `suma`.
 
-Utilice nombres que describan el propósito o la intención de la variable. Minimice el uso de abreviaturas que probablemente sean desconocidas para alguien ajeno a su proyecto (especialmente acrónimos e iniciales). No abrevie eliminando letras dentro de una palabra. Como regla general, una abreviatura probablemente esté bien si aparece en Wikipedia.
+Utilizá nombres que describan el propósito o la intención de la variable. Minimizá el uso de abreviaturas que probablemente sean desconocidas para alguien ajeno a tu proyecto (especialmente acrónimos e iniciales). No abrevies eliminando letras dentro de una palabra. Como regla general, una abreviatura probablemente esté bien si aparece en Wikipedia.
 
-Si declara varias variables del mismo tipo a la vez, está bien declararlas juntas, como en:
+Si declarás varias variables del mismo tipo a la vez, está bien declararlas juntas, como en:
 
 ```c
 int manzanas, bananas, frutillas;
 ```
 
-Sólo evite inicializar algunas sí pero otras no, como en:
+Sólo evitá inicializar algunas sí pero otras no, como en:
 
 ```c
 int manzanas = 0, bananas, frutillas = 0;
 ```
 
-**Nunca** modifique el largo de arreglos estáticos en forma dinámica. En su lugar, utilice asignación de memoria dinámica con las funciones estándar de C `malloc()` y `free()`.
+**Nunca** modifiques el largo de arreglos estáticos en forma dinámica. En su lugar, utilizá asignación de memoria dinámica con las funciones estándar de C `malloc()` y `free()`.
 
 ```c
 // Incorrecto
@@ -376,7 +385,7 @@ void mi_funcion(int largo)
 
 ### Visibilidad
 
-**Evite** utilizar variables globales siempre que sea posible, ya que esto genera alto acoplamiento entre distintos módulos y no es considerado una buena práctica de programación. 
+**Evitá** utilizar variables globales siempre que sea posible, ya que esto genera alto acoplamiento entre distintos módulos y no es considerado una buena práctica de programación.
 
 ### Estilo
 
@@ -389,13 +398,13 @@ int cantidad;
 
 ## Punteros
 
-Al declarar un puntero, escriba el `*` junto al tipo de dato, como en:
+Al declarar un puntero, escribí el `*` junto al tipo de dato, como en:
 
 ```c
 int* p;
 ```
 
-**No** lo escriba junto a la variable, como en:
+**No** lo escribas junto a la variable, como en:
 
 ```c
 int *p;
@@ -414,28 +423,39 @@ int a;
 int* p = &a;
 ```
 
-Para evitar posibles errores, tenga cuidado de declarar punteros por **separado** de no punteros, como en:
+Para evitar posibles errores, expresá las declaraciones de punteros por **separado** de las declaraciones de variables que no correspondan a punteros, como en:
 
 ```c
 int* p;
 int n;
 ```
 
-Y **no** declare punteros en una misma línea, como en:
+Y **no** declares varios punteros en una misma línea, como en:
 
 ```c
 int* p, * n;
 ```
 
+Finalmente, en el caso de requerir evaluar que el valor de un puntero es distinto (o igual) a `NULL`, escribí la operación lógica para hacerlo más explícito:
+
+```c
+if (p != NULL)
+{
+    printf("p es distinto de NULL\n");
+}
+```
+
 ### Valor cero
 
-Para punteros, prefiera `NULL` a `0`. Si bien los valores son equivalentes, `NULL` parece más un puntero para el lector, y algunos compiladores de C proporcionan definiciones especiales de `NULL` que les permiten dar warnings útiles. **Nunca** use `NULL` para valores numéricos (enteros o de punto flotante).
+Para punteros, preferí usar `NULL` a `0`. Si bien los valores son equivalentes, `NULL` parece más un puntero para el lector, y algunos compiladores de C proporcionan definiciones especiales de `NULL` que les permiten dar warnings útiles. **Nunca** uses `NULL` para valores numéricos (enteros o de punto flotante).
 
-Utilice `'\0'` para el caracter nulo en strings, ya que usar el tipo correcto hace que el código sea más legible (por más que su valor sea cero).
+Utilizá `'\0'` para el caracter nulo en strings, ya que usar el tipo correcto hace que el código sea más legible (por más que su valor sea también cero).
 
-Utilice el valor literal `0` sólo para variables de tipo numérico.
+Utilizá el valor literal `0` sólo para variables de tipo numérico.
 
 ## Macros y Constantes Simbólicas
+
+### Estilo
 
 Las macros y constantes simbólicas deben ser declaradas como se muestra a continuación, en **mayúsculas** y con guiones bajos (`'_'`) entre las palabras. Por ejemplo:
 
@@ -444,11 +464,29 @@ Las macros y constantes simbólicas deben ser declaradas como se muestra a conti
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 ```
 
+### Magic numbers
+
+Un número mágico es un número en el código que parece arbitrario y no tiene contexto ni significado. Esto es considerado un antipatrón porque dificulta la comprensión y el mantenimiento del código. Evitá colocar magic numbers siempre que sea posible:
+
+```c
+// Incorrecto
+float calcular_perimetro_circulo(float radio) {
+    return 6.28 * radio;
+}
+
+// Correcto
+#define PI_REDONDEADO 3.14
+
+float calcular_perimetro_circulo(float radio) {
+    return 2.0 * PI_REDONDEADO * radio;
+}
+```
+
 ## Estructuras, Enumeraciones y Typedefs
 
 ### Estructuras
 
-Declare una `estructura` como un tipo de la siguiente manera:
+Declará una `estructura` como un tipo de la siguiente manera:
 
 ```c
 typedef struct Estudiante
@@ -458,7 +496,7 @@ typedef struct Estudiante
 } Estudiante;
 ```
 
-Observe como:
+Observá como:
 
 - las llaves se encuentran bien **alineadas**;
 - los miembros se encuentran indentados con **4** espacios; y
@@ -490,7 +528,7 @@ typedef struct Estudiante
 
 ### Enumeraciones
 
-Declare una `enumeracion` como un tipo de la siguiente manera:
+Declará una `enumeracion` como un tipo de la siguiente manera:
 
 ```c
 typedef enum Booleano
@@ -500,7 +538,7 @@ typedef enum Booleano
 } Booleano;
 ```
 
-Observe como:
+Observá como:
 
 - las llaves se encuentran bien **alineadas**;
 - los valores posibles se encuentran indentados con **4** espacios; y
@@ -563,7 +601,7 @@ Para garantizar que sea único, deben basarse en la ruta completa en el árbol d
 
 Se debe evitar colocar `#include` en archivos header, salvo que sea estrictamente necesario (por ejemplo, debido a la necesidad de incluir la declaración de un nuevo tipo de dato). Esto permite que quien incluya nuestro archivo de encabezado no incluya además múltiples archivos de encabezado, los cuales incluso podrían ser incompatibles con los suyos.
 
-Por lo tanto, **evite** hacer esto:
+Por lo tanto, **evitá** hacer esto:
 
 ```c
 // hola.c
@@ -588,7 +626,7 @@ void saludar(void);
 #endif  // HOLA_H_
 ```
 
-Y **prefiera** hacer esto:
+Y **preferí** hacer esto:
 
 ```c
 // hola.c
@@ -642,7 +680,7 @@ v = w*x + y/z;
 v = w * (x + z);
 ```
 
-No coloque espacios que separen a los operadores unarios y sus argumentos. Por ejemplo:
+No coloques espacios que separen a los operadores unarios y sus argumentos. Por ejemplo:
 
 ```c
 // Correcto
@@ -653,15 +691,15 @@ if (x && !y) ...
 
 ### sizeof
 
-Prefiera `sizeof(nombre_de_variable)` a `sizeof(tipo)`.
+Preferí `sizeof(nombre_de_variable)` a `sizeof(tipo)`.
 
-Use `sizeof(nombre_de_variable)` cuando tome el tamaño de una variable en particular, ya que se actualizará adecuadamente si alguien cambia el tipo de variable ahora o más tarde. Puede usar `sizeof(tipo)` para el código que no está relacionado con ninguna variable en particular.
+Usá `sizeof(nombre_de_variable)` cuando tome el tamaño de una variable en particular, ya que se actualizará adecuadamente si alguien cambia el tipo de variable ahora o más tarde. Podés usar `sizeof(tipo)` para aquel código que no esté relacionado con ninguna variable en particular.
 
 ## Últimas Palabras
 
-Use el sentido común y **SEA CONSISTENTE**.
+Usá el sentido común y **SÉ CONSISTENTE**.
 
-El objetivo de tener pautas de estilo es tener un vocabulario común de codificación para que la gente pueda concentrarse en lo **que** está diciendo, en lugar de en **cómo** lo está diciendo. Las reglas de estilo globales aquí presentadas sirven para que la gente conozca el vocabulario y manejen un lenguaje común.
+El objetivo de tener pautas de estilo es tener un vocabulario común de codificación para que la gente pueda concentrarse en lo **que** estás diciendo, en lugar de en **cómo** lo estás diciendo. Las reglas de estilo globales aquí presentadas sirven para que la gente conozca el vocabulario y manejen un lenguaje común.
 
 OK, suficiente cháchara sobre escritura de código; el código en sí es mucho más interesante. **¡A programar, que te diviertas!**
 
