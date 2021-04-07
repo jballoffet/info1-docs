@@ -466,7 +466,7 @@ Las macros y constantes simbólicas deben ser declaradas como se muestra a conti
 
 ### Magic numbers
 
-Un número mágico es un número en el código que parece arbitrario y no tiene contexto ni significado. Esto es considerado un antipatrón porque dificulta la comprensión y el mantenimiento del código. Evitá colocar magic numbers siempre que sea posible:
+Un magic number (número mágico) es un número en el código que parece arbitrario y no tiene contexto ni significado. Esto es considerado un antipatrón porque dificulta la comprensión y el mantenimiento del código. Evitá colocar magic numbers siempre que sea posible:
 
 ```c
 // Incorrecto
@@ -519,10 +519,10 @@ Los nombres de los miembros de datos de la estructura, al igual que las variable
 ```c
 typedef struct Estudiante 
 {
-  char primer_nombre[20];
-  char segundo_nombre[20];
-  char apellido[20];
-  int edad;
+    char primer_nombre[20];
+    char segundo_nombre[20];
+    char apellido[20];
+    int edad;
 } Estudiante;
 ```
 
