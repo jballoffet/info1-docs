@@ -8,7 +8,7 @@ Las reglas de coherencia más importantes son las que rigen la denominación. El
 
 - [Largo de Línea](#largo-de-línea)
 - [Comentarios](#comentarios)
-- [Espacios Verticales](#espacios-verticales)
+- [Espacios Verticales y Líneas en Blanco](#espacios-verticales-y-líneas-en-blanco)
 - [Indentación](#indentación)
 - [Condicionales](#condicionales)
 - [Bucles](#bucles)
@@ -37,7 +37,7 @@ int producto_de_los_dos_numeros_enteros_ingresados_por_el_usuario = primer_numer
 
 ## Comentarios
 
-Los comentarios hacen que el código sea más legible, no solo para otros (por ejemplo, los docentes) sino también para vos, especialmente cuando pasan horas, días, semanas, meses o años entre cuando escribió y cuando pretendés leer tu propio código. Pero recordá: si bien los comentarios son muy importantes, el mejor código es **autodocumentado**. Dar nombres sensatos a tipos y variables es mucho mejor que usar nombres oscuros que luego se deben explicar mediante comentarios.
+Los comentarios hacen que el código sea más legible, no solo para otros (por ejemplo, los docentes) sino también para vos, especialmente cuando pasan horas, días, semanas, meses o años entre cuando escribiste y cuando pretendés leer tu propio código. Pero recordá: si bien los comentarios son muy importantes, el mejor código es **autodocumentado**. Dar nombres sensatos a tipos y variables es mucho mejor que usar nombres oscuros que luego se deben explicar mediante comentarios.
 
 Comentar muy poco es malo. Comentar demasiado es malo. ¿Cuál es el punto justo? Comentar cada varias líneas de código (es decir, bloques interesantes) es una guía decente. Tratá de escribir comentarios que respondan a una o ambas de estas preguntas:
 
@@ -71,7 +71,7 @@ Ni esto:
 float grados_celsius = 5.0 / 9.0 * (grados_fahrenheit - 32.0); // Convierto de Fahrenheit a Celsius
 ```
 
-Al comenzo de tus archivos `.c` y `.h` debe haber un comentario que resuma lo que hace tu programa (o ese módulo en particular), e información acerca del autor y la fecha de creación del archivo, por ejemplo:
+Al comienzo de tus archivos `.c` y `.h` debe haber un comentario que resuma lo que hace tu programa (o ese módulo en particular), e información acerca del autor y la fecha de creación del archivo, por ejemplo:
 
 ```c
 /*!
@@ -103,7 +103,7 @@ El correcto formato en los comentarios permitirá generar la documentación de f
 
 Por último, recordá prestar atención a la puntuación, la ortografía y la gramática; es más fácil leer comentarios bien escritos que mal escritos.
 
-## Espacios Verticales
+## Espacios Verticales y Líneas en Blanco
 
 Minimizá el uso de espacios verticales en blanco.
 
@@ -113,7 +113,7 @@ El principio básico es: cuanto más código cabe en una pantalla, más fácil e
 
 ## Indentación
 
-Indentá (colocar sangrías) el código con **4 (cuatro)** espacios a la vez para dejar en claro qué bloques de código están dentro de otros. Si usás la tecla `Tab` de tu teclado para hacerlo, asegurate de que tu editor de texto esté configurado para convertir tabs (`\t`) en cuatro espacios; de lo contrario, es posible que tu código no se imprima o no se muestre correctamente en la computadora de otra persona, ya que `\t` se renderiza de manera diferente en diferentes editores.
+Indentá (colocá sangrías) el código con **4 (cuatro)** espacios a la vez para dejar en claro qué bloques de código están dentro de otros. Si usás la tecla `Tab` de tu teclado para hacerlo, asegurate de que tu editor de texto esté configurado para convertir tabs (`\t`) en cuatro espacios; de lo contrario, es posible que tu código no se imprima o no se muestre correctamente en la computadora de otra persona, ya que `\t` se renderiza de manera diferente en diferentes editores.
 
 A continuación se muestra un código indentado correctamente:
 
@@ -333,11 +333,13 @@ En cuanto a tus propias funciones, asegurate de definirlas de manera similar, co
 
 ### Largo de las funciones
 
-Implementá funciones pequeñas y enfocadas.
+Implementá funciones pequeñas y enfocadas. La idea es que cada función represente una técnica para lograr un único objetivo y que por lo tanto tenga una única responsabilidad. Recordá también que el nombre de la función debe tratar de dejar en evidencia el propósito de la misma.
 
 Si bien es cierto que las funciones largas a veces son apropiadas, si una función supera las **40** líneas, considerá si se puede dividir sin dañar la estructura del programa.
 
 Incluso si tu función larga funciona perfectamente ahora, alguien que la modifique en unos meses puede precisar agregar un nuevo comportamiento. Esto podría resultar en errores difíciles de encontrar. Mantener tus funciones breves y simples facilita que otras personas lean y modifiquen tu código. Las funciones pequeñas también son más fáciles de testear.
+
+Particularmente en la función `main`, uno debe esforzarse por no tener demasiadas líneas de código. Tener una función `main` larga suele indicar una falta de abstracción, lo que significa que tu código no se ha dividido lo suficiente en funciones lógicas más pequeñas. Recordá que la función `main` no debe contener detalles de bajo nivel, sino que debe ser una descripción general de alto nivel de la solución (diseño [Top-Down](https://es.wikipedia.org/wiki/Top-down_y_bottom-up)).
 
 ### Estilo
 
@@ -470,14 +472,16 @@ Un magic number (número mágico) es un número en el código que parece arbitra
 
 ```c
 // Incorrecto
-float calcular_perimetro_circulo(float radio) {
+float calcular_perimetro_circulo(float radio)
+{
     return 6.28 * radio;
 }
 
 // Correcto
 #define PI_REDONDEADO 3.14
 
-float calcular_perimetro_circulo(float radio) {
+float calcular_perimetro_circulo(float radio)
+{
     return 2.0 * PI_REDONDEADO * radio;
 }
 ```
